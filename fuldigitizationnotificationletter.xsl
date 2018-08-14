@@ -59,29 +59,36 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 							<xsl:value-of select="notification_data/phys_item_display/title"/>
 						</td>
 					</tr>
-					<xsl:if test="/notification_data/url_list[string]">
-						<tr>
-							<td>@@attached_are_the_urls@@:</td>
-						</tr>
-
-						<xsl:for-each select="/notification_data/attachments_list/attachments">
-							<xsl:if test="url">
+					<xsl:choose>
+						<xsl:when test="/notification_data/url_list[string]">
 							<tr>
-								<td>
-									<a>
-									<xsl:attribute name="href">
-										<xsl:value-of select="url" />
-									</xsl:attribute>
-									<xsl:value-of select="url" />
-									</a>
-								</td>
+								<td>@@attached_are_the_urls@@:</td>
 							</tr>
 
-							</xsl:if>
-						</xsl:for-each>
-
-					</xsl:if>
-                </xsl:if>
+							<xsl:for-each select="/notification_data/attachments_list/attachments">
+								<xsl:if test="url">
+								<tr>
+									<td>
+										<a>
+											<xsl:attribute name="href">
+												<xsl:value-of select="url" />
+											</xsl:attribute>
+											<xsl:value-of select="url" />
+										</a>
+									</td>
+								</tr>
+								</xsl:if>
+							</xsl:for-each>
+						</xsl:when>
+					<xsl:otherwise>
+						<tr>
+							<td>
+								<b>Please find your digitized item attached to this email.</b>
+							</td>
+						</tr>
+					</xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
             <tr>
 				<td>@@sincerely@@<br />@@department@@</td>
 					</tr>
