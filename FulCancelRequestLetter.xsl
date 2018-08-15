@@ -259,6 +259,7 @@
 								<reason>Item is needed for Course Reserves</reason>
 								<reason>Items withdrawn</reason>
    								<reason>Requested material cannot be located</reason>
+   								<reason>Failed to locate potential suppliers</reason>
 							</xsl:variable>
 
 							<xsl:if test="notification_data/request/start_time != ''">
