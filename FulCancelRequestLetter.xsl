@@ -252,15 +252,7 @@
 								</tr>
 							</xsl:if> -->
 
-							<!-- Need to define the reasons for cancellation that will trigger an ILL link -->
-							<xsl:variable name="reasons">
-   								<reason>Cannot be fulfilled</reason>
-								<reason>Item is missing</reason>
-								<reason>Item is needed for Course Reserves</reason>
-								<reason>Items withdrawn</reason>
-   								<reason>Requested material cannot be located</reason>
-   								<reason>Failed to locate potential suppliers</reason>
-							</xsl:variable>
+							
 
 							<xsl:if test="notification_data/request/start_time != ''">
 								<tr>
@@ -296,12 +288,22 @@
 								<td>
 									<!--Defines a pair of variables in order to check the given cancellation reason against the reasons we want to trigger an ILL link, displaying the link if any of those reasons are present
 
-
 										Solution courtesy of https://stackoverflow.com/questions/15929538/check-text-string-against-an-array-in-if-test-->
-									<xsl:variable name="lookup" select="document('')//xsl:variable[@name='reasons']"/>
+									<xsl:variable name="lookup_reasons" select="document('')//xsl:variable[@name='reasons']"/>
 
 									<xsl:variable name="cancel_reason" select="notification_data/request/status_note_display" />
-									<xsl:if test="($lookup/reason=$cancel_reason) and  (notification_data/receivers/receiver/user/linked_account = 'false')">
+									<xsl:if test="$lookup_reasons/reason=$cancel_reason">
+										<xsl:variable name="institution_code">
+											<xsl:choose>
+												<xsl:when test="notification_data/receivers/receiver/user/linked_account = 'true'">
+													 <xsl:value-of select="notification_data/request/from_another_inst"/>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:value-of select="substring-before(substring-after(notification_data/organization_unit/path, '.'), '.')"/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</xsl:variable>
+										<xsl:variable name="base_url" select="document('')//xsl:variable[@name='illiad_paths']/path[@institution=$institution_code]"/>
 										<xsl:choose>
 											<xsl:when test="notification_data/phys_item_display/material_type = 'Book'">
 												<xsl:variable name="title" select="notification_data/phys_item_display/title"/>
@@ -310,13 +312,13 @@
 												<xsl:variable name="pub_place" select="notification_data/phys_item_display/publication_place"/>
 												<xsl:variable name="publisher" select="notification_data/phys_item_display/publisher"/>
 												<xsl:variable name="isbn" select="notification_data/phys_item_display/isbn"/>
-												You may <a href="https://proxygw.wrlc.org/login?url=https://gwu.illiad.oclc.org/illiad/illiad.dll/OpenURL?rft.isbn={$isbn}&amp;rft.volume=&amp;rft.month=&amp;rft.genre=book&amp;rft.au=Fitzgerald&amp;rft.pub={$publisher}&amp;rft.issue=&amp;rft.place={$pub_place}&amp;rft.title={$title}&amp;rft.stitle={$title}&amp;rft.btitle={$title}&amp;rft.jtitle=&amp;rft.aufirst={$author_first}&amp;linktype=openurl&amp;rft.atitle=&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aarticle&amp;rft.auinit1=&amp;rft.date=&amp;url_ver=Z39.88-2004&amp;rft.aulast={$author_last}&amp;rft.spage=&amp;rft.epage=&amp;rft.pmid=&amp;rfr_id=Primo">request this item</a> via Interlibrary Loan.
+												You may <a href="{normalize-space($base_url)}OpenURL?rft.isbn={$isbn}&amp;rft.volume=&amp;rft.month=&amp;rft.genre=book&amp;rft.au=Fitzgerald&amp;rft.pub={$publisher}&amp;rft.issue=&amp;rft.place={$pub_place}&amp;rft.title={$title}&amp;rft.stitle={$title}&amp;rft.btitle={$title}&amp;rft.jtitle=&amp;rft.aufirst={$author_first}&amp;linktype=openurl&amp;rft.atitle=&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aarticle&amp;rft.auinit1=&amp;rft.date=&amp;url_ver=Z39.88-2004&amp;rft.aulast={$author_last}&amp;rft.spage=&amp;rft.epage=&amp;rft.pmid=&amp;rfr_id=Primo">request this item</a> via Interlibrary Loan.
 											</xsl:when>
 											<xsl:otherwise>
-												<a href="https://proxygw.wrlc.org/login?url=https://gwu.illiad.oclc.org/illiad/illiad.dll">You may be able to obtain this item via Interlibrary Loan.</a>
+												<a href="{$base_url}">You may be able to obtain this item via Interlibrary Loan.</a>
 											</xsl:otherwise>
 										</xsl:choose>	
-									</xsl:if>
+									</xsl:if> 
 								</td>
 							</tr>
 							<xsl:if test="notification_data/request/system_notes != ''">
@@ -346,4 +348,22 @@
 			</body>
 		</html>
 	</xsl:template>
+	<!-- Need to define the reasons for cancellation that will trigger an ILL link -->
+	<xsl:variable name="reasons">
+   		<reason>Cannot be fulfilled</reason>
+		<reason>Item is missing</reason>
+		<reason>Item is needed for Course Reserves</reason>
+		<reason>Items withdrawn</reason>
+   		<reason>Requested material cannot be located</reason>
+   		<reason>Failed to locate potential suppliers</reason>
+	</xsl:variable>
+	<!-- Proxied paths for ILLiad for the WRLC schools -->
+	<xsl:variable name="illiad_paths">
+		<path institution="01WRLC_GWA">
+			https://proxygw.wrlc.org/login?url=https://gwu.illiad.oclc.org/illiad/illiad.dll/
+		</path>
+		<path institution="01WRLC_AMU">
+			https://proxyau.wrlc.org/login?url=https://american.illiad.oclc.org/illiad/illiad.dll/
+		</path>
+	</xsl:variable>
 </xsl:stylesheet>
