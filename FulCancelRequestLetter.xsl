@@ -35,225 +35,6 @@
 									<xsl:call-template name="recordTitle" /> <!-- recordTitle.xsl -->
 								</td>
 							</tr>
-							<!-- <xsl:if test="notification_data/metadata/title != ''">
-								<tr>
-									<td>
-										<b>@@title@@: </b>
-										<xsl:value-of select="notification_data/metadata/title" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/journal_title != ''">
-								<tr>
-									<td>
-										<b> @@journal_title@@: </b>
-										<xsl:value-of select="notification_data/metadata/journal_title" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/author != ''">
-								<tr>
-									<td>
-										<b> @@author@@: </b>
-										<xsl:value-of select="notification_data/metadata/author" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/author_initials != ''">
-								<tr>
-									<td>
-										<b>@@author_initials@@: </b>
-										<xsl:value-of select="notification_data/metadata/author_initials" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/edition != ''">
-								<tr>
-									<td>
-										<b> @@edition@@: </b>
-										<xsl:value-of select="notification_data/metadata/edition" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/identifier != ''">
-								<tr>
-									<td>
-										<b>@@identifier@@: </b>
-										<xsl:value-of select="notification_data/metadata/identifier" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/lccn != ''">
-								<tr>
-									<td>
-										<b> @@lccn@@: </b>
-										<xsl:value-of select="notification_data/metadata/lccn" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/issn != ''">
-								<tr>
-									<td>
-										<b>@@issn@@: </b>
-										<xsl:value-of select="notification_data/metadata/issn" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/isbn != ''">
-								<tr>
-									<td>
-										<b> @@isbn@@: </b>
-										<xsl:value-of select="notification_data/metadata/isbn" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/oclc_nr != ''">
-								<tr>
-									<td>
-										<b> @@oclc_nr@@: </b>
-										<xsl:value-of select="notification_data/metadata/oclc_nr" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/doi != ''">
-								<tr>
-									<td>
-										<b>@@doi@@: </b>
-										<xsl:value-of select="notification_data/metadata/doi" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/pmid != ''">
-								<tr>
-									<td>
-										<b> @@pmid@@: </b>
-										<xsl:value-of select="notification_data/metadata/pmid" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/publisher != ''">
-								<tr>
-									<td>
-										<b> @@publisher@@: </b>
-										<xsl:value-of select="notification_data/metadata/publisher" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/publication_date != ''">
-								<tr>
-									<td>
-										<b>@@publication_date@@: </b>
-										<xsl:value-of select="notification_data/metadata/publication_date" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/place_of_publication != ''">
-								<tr>
-									<td>
-										<b> @@place_of_publication@@: </b>
-										<xsl:value-of select="notification_data/metadata/place_of_publication" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/additional_person_name != ''">
-								<tr>
-									<td>
-										<b> @@additional_person_name@@: </b>
-										<xsl:value-of select="notification_data/metadata/additional_person_name" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/source != ''">
-								<tr>
-									<td>
-										<b>@@source@@: </b>
-										<xsl:value-of select="notification_data/metadata/source" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/series_title_number != ''">
-								<tr>
-									<td>
-										<b> @@series_title_number@@: </b>
-										<xsl:value-of select="notification_data/metadata/series_title_number" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/call_number != ''">
-								<tr>
-									<td>
-										<b> @@call_number@@: </b>
-										<xsl:value-of select="notification_data/metadata/call_number" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/volume != ''">
-								<tr>
-									<td>
-										<b>@@volume@@: </b>
-										<xsl:value-of select="notification_data/metadata/volume" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/part != ''">
-								<tr>
-									<td>
-										<b> @@part@@: </b>
-										<xsl:value-of select="notification_data/metadata/part" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/chapter != ''">
-								<tr>
-									<td>
-										<b> @@chapter@@: </b>
-										<xsl:value-of select="notification_data/metadata/chapter" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/pages != ''">
-								<tr>
-									<td>
-										<b>@@pages@@: </b>
-										<xsl:value-of select="notification_data/metadata/pages" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/start_page != ''">
-								<tr>
-									<td>
-										<b> @@start_page@@: </b>
-										<xsl:value-of select="notification_data/metadata/start_page" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/end_pagee != ''">
-								<tr>
-									<td>
-										<b> @@end_page@@: </b>
-										<xsl:value-of select="notification_data/metadata/end_page" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/issue != ''">
-								<tr>
-									<td>
-										<b>@@issue@@: </b>
-										<xsl:value-of select="notification_data/metadata/issue" />
-									</td>
-								</tr>
-							</xsl:if>
-							<xsl:if test="notification_data/metadata/note != ''">
-								<tr>
-									<td>
-										<b> @@note@@: </b>
-										<xsl:value-of select="notification_data/metadata/note" />
-									</td>
-								</tr>
-							</xsl:if> -->
-
-							
-
 							<xsl:if test="notification_data/request/start_time != ''">
 								<tr>
 									<td>
@@ -262,7 +43,7 @@
 									</td>
 								</tr>
 							</xsl:if>
-						<xsl:if test="notification_data/request/end_time != ''">
+							<xsl:if test="notification_data/request/end_time != ''">
 								<tr>
 									<td>
 										<b> @@end_time@@: </b>
@@ -270,7 +51,7 @@
 									</td>
 								</tr>
 							</xsl:if>
-						<xsl:if test="notification_data/request/note != ''">
+							<xsl:if test="notification_data/request/note != ''">
 								<tr>
 									<td>
 										<b> @@request_note@@: </b>
@@ -289,21 +70,26 @@
 									<!--Defines a pair of variables in order to check the given cancellation reason against the reasons we want to trigger an ILL link, displaying the link if any of those reasons are present
 
 										Solution courtesy of https://stackoverflow.com/questions/15929538/check-text-string-against-an-array-in-if-test-->
-									<xsl:variable name="lookup_reasons" select="document('')//xsl:variable[@name='reasons']"/>
-
+									<xsl:variable name="lookup_reasons" select="document('')//xsl:variable[@name='reasons']"/>									
 									<xsl:variable name="cancel_reason" select="notification_data/request/status_note_display" />
+									<!--Assigns the institution's Alma code the variable $institution_code-->
 									<xsl:if test="$lookup_reasons/reason=$cancel_reason">
 										<xsl:variable name="institution_code">
 											<xsl:choose>
+												<!--Case 1: The user's IZ is different from that of the cancelling library-->
 												<xsl:when test="notification_data/receivers/receiver/user/linked_account = 'true'">
 													 <xsl:value-of select="notification_data/request/from_another_inst"/>
 												</xsl:when>
+												<!--Case 2: The user is from the same IZ-->
 												<xsl:otherwise>
+													<!--The IZ code of the cancelling library is embedded in a longer string that includes the library location name -->
 													<xsl:value-of select="substring-before(substring-after(notification_data/organization_unit/path, '.'), '.')"/>
 												</xsl:otherwise>
 											</xsl:choose>
 										</xsl:variable>
+										<!--Based on the user's IZ code, select the appropriate ILLiad URL-->
 										<xsl:variable name="base_url" select="document('')//xsl:variable[@name='illiad_paths']/path[@institution=$institution_code]"/>
+										<!--For common types, populate the OpenURL fields with the citation data from the request-->
 										<xsl:choose>
 											<xsl:when test="notification_data/phys_item_display/material_type = 'Book'">
 												<xsl:variable name="title" select="notification_data/phys_item_display/title"/>
@@ -365,5 +151,39 @@
 		<path institution="01WRLC_AMU">
 			https://proxyau.wrlc.org/login?url=https://american.illiad.oclc.org/illiad/illiad.dll/
 		</path>
+		<path institution="01WRLC_CAA">
+			https://proxycu.wrlc.org/login?url=https://cua.illiad.oclc.org/illiad/illiad.dll
+		</path>
+		<path institution="01WRLC_GAL">
+			https://proxyga.wrlc.org/login?url=https://gallaudet.illiad.oclc.org/illiad/illiad.dll
+		</path>
+		<path institution="01WRLC_GML">
+
+		</path>
+		<path institution="01WRLC_GUNIV">
+
+		</path>
+		<path institution="01WRLC_HOW">
+			https://proxyhu.wrlc.org/login?url=https://howard.illiad.oclc.org/illiad/illiad.dll
+		</path>
+		<path institution="01WRLC_MAR">
+			https://proxymu.wrlc.org/login?url=https://marymount.illiad.oclc.org/illiad/illiad.dll
+		</path>
+		<path institution="01WRLC_DOC">
+			https://proxydc.wrlc.org/login?url=https://udc.illiad.oclc.org/illiad/illiad.dll
+		</path>
+		<path institution="01WRLC_GUNIVLAW">
+
+		</path>
+		<path institution="01WRLC_AMULAW">
+
+		</path>
+		<path institution="01WRLC_GWAHLTH">
+
+		</path>
+		<path institution="01WRLC_GWALAW">
+
+		</path>
+
 	</xsl:variable>
 </xsl:stylesheet>
