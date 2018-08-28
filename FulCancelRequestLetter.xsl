@@ -83,7 +83,7 @@
 												<!--Case 2: The user is from the same IZ-->
 												<xsl:otherwise>
 													<!--The IZ code of the cancelling library is embedded in a longer string that includes the library location name -->
-													<xsl:value-of select="substring-before(substring-after(notification_data/organization_unit/path, '.'), '.')"/>
+													<xsl:value-of select="substring-before(substring-after(concat(notification_data/organization_unit/path, '.'),  '.'), '.')"/>
 												</xsl:otherwise>
 											</xsl:choose>
 										</xsl:variable>
@@ -98,7 +98,7 @@
 												<xsl:variable name="pub_place" select="notification_data/phys_item_display/publication_place"/>
 												<xsl:variable name="publisher" select="notification_data/phys_item_display/publisher"/>
 												<xsl:variable name="isbn" select="notification_data/phys_item_display/isbn"/>
-												You may <a href="{normalize-space($base_url)}OpenURL?rft.isbn={$isbn}&amp;rft.volume=&amp;rft.month=&amp;rft.genre=book&amp;rft.au=Fitzgerald&amp;rft.pub={$publisher}&amp;rft.issue=&amp;rft.place={$pub_place}&amp;rft.title={$title}&amp;rft.stitle={$title}&amp;rft.btitle={$title}&amp;rft.jtitle=&amp;rft.aufirst={$author_first}&amp;linktype=openurl&amp;rft.atitle=&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aarticle&amp;rft.auinit1=&amp;rft.date=&amp;url_ver=Z39.88-2004&amp;rft.aulast={$author_last}&amp;rft.spage=&amp;rft.epage=&amp;rft.pmid=&amp;rfr_id=Primo">request this item</a> via Interlibrary Loan.
+												You may <a href="{normalize-space($base_url)}OpenURL?rft.isbn={$isbn}&amp;rft.volume=&amp;rft.month=&amp;rft.genre=book&amp;rft.au=&amp;rft.pub={$publisher}&amp;rft.issue=&amp;rft.place={$pub_place}&amp;rft.title={$title}&amp;rft.stitle={$title}&amp;rft.btitle={$title}&amp;rft.jtitle=&amp;rft.aufirst={$author_first}&amp;linktype=openurl&amp;rft.atitle=&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Aarticle&amp;rft.auinit1=&amp;rft.date=&amp;url_ver=Z39.88-2004&amp;rft.aulast={$author_last}&amp;rft.spage=&amp;rft.epage=&amp;rft.pmid=&amp;rfr_id=Primo">request this item</a> via Interlibrary Loan.
 											</xsl:when>
 											<xsl:otherwise>
 												<a href="{$base_url}">You may be able to obtain this item via Interlibrary Loan.</a>
