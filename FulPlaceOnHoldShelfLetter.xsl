@@ -32,7 +32,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<div class="messageBody">
 					<table cellspacing="0" cellpadding="5" border="0">
 						<tr>
-							<td>@@following_item_requested_on@@ <xsl:value-of select="notification_data/request/create_date"/>, @@can_picked_at@@ <xsl:value-of select="notification_data/request/assigned_unit_name"/> @@circulation_desk@@.</td>
+							<td>@@following_item_requested_on@@ <xsl:value-of select="notification_data/request/create_date"/>, @@can_picked_at@@ 
+								 <xsl:value-of select="substring-before(notification_data/request/assigned_unit_name/text(), ' -')"/> @@circulation_desk@@.
+							</td>
 						</tr>
 
 						<xsl:if test="notification_data/request/work_flow_entity/expiration_date">
@@ -45,7 +47,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 						<tr>
 							<td><xsl:call-template name="recordTitle" /> <!-- recordTitle.xsl --></td>
 						</tr>
-						<xsl:if test="notification_data/request/system_notes">
+						<xsl:if test="notification_data/request/system_notes/text()">
 						<tr>
 							<td><b>@@notes_affect_loan@@:</b></td>
 						</tr>
@@ -75,10 +77,4 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	</html>
 	</xsl:template>
 
-
-
 </xsl:stylesheet>
-
-
-
-
